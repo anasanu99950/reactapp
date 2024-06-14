@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import './Director.css'; 
+import './Director.css';
 
 const DirectorMovies = () => {
   const [directors, setDirectors] = useState([
@@ -24,35 +23,60 @@ const DirectorMovies = () => {
   };
 
   return (
-    <div className='container'>
-      <h1><center>Director and Movies</center></h1>
-      <div className='input-container'>
-        <input
-          type="text"
-          value={newDirector}
-          onChange={(e) => setNewDirector(e.target.value)}
-          placeholder="Director Name"
-        />
-        <input
-          type="text"
-          value={newMovie}
-          onChange={(e) => setNewMovie(e.target.value)}
-          placeholder="Movie Name"
-        />
-        <button onClick={handleAdd}>Add</button>
-      </div>
-      <div className='list-container'>
-        {directors.map((item, index) => (
-          <div key={index} className='list-item'>
-            <span>{item.director}</span>
-            <span>{item.movie}</span>
-            <button onClick={() => handleRemove(index)}>Remove</button>
-          </div>
-        ))}
-      </div>
+    <div className="container">
+      <h1 className="heading">Director and Movies</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Director Name</th>
+            <th>Movie Name</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="text"
+                value={newDirector}
+                onChange={(e) => setNewDirector(e.target.value)}
+                placeholder="Director Name"
+                className="input-field"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={newMovie}
+                onChange={(e) => setNewMovie(e.target.value)}
+                placeholder="Movie Name"
+                className="input-field"
+              />
+            </td>
+            <td>
+              <button className="add-btn" onClick={handleAdd}>
+                Add New
+              </button>
+            </td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          {directors.map((item, index) => (
+            <tr key={index}>
+              <td>{item.director}</td>
+              <td>{item.movie}</td>
+              <td></td>
+              <td>
+                <button className="remove-btn" onClick={() => handleRemove(index)}>
+                  Remove
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
 export default DirectorMovies;
-
